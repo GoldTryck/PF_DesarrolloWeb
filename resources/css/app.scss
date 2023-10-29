@@ -1,5 +1,12 @@
-$body-bg: #ebd994;
-$prymary: #000000;
+$body-bg: #F2E0C9;
+$prymary: #377D8C;
 
 @import 'bootstrap/scss/bootstrap';
 
+a {
+    color: $prymary;
+}
+
+h1 {
+    color: $prymary;
+}
