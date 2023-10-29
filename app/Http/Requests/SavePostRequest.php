@@ -21,9 +21,11 @@ class SavePostRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        return [    
             'title' => ['required','min:8'],
             'body' => ['required','min:8'],
+            'category' => ['required'],
+            'image' => ['nullable', 'mimes:jpeg,png,bmp,gif']
         ];
     }
 }

@@ -14,3 +14,20 @@
         <small style="color:red">{{ $message}}</small>
     @enderror
 </label><br>
+<label>
+    Categoría <br>
+    <select name="category" value="{{ $post->category }}">
+        <option value="tecnology" selected>Tecnología</option>
+        <option value="music">Deportes</option>
+        <option value="videogames">Video Juegos</option>
+    </select>
+    
+</label>
+<label>
+    Imagen <br>
+    <input type="file" name="image">
+    @error('image')
+        <br>
+        <small style="color:red">{{ $message}}</small>
+    @enderror
+</label>

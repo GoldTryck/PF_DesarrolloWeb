@@ -11,8 +11,12 @@ Route::view('/','main')->name('home');
 Route::resource('blog', PostController::class, [
     'names' => 'posts',
     'parameters' => ['blog' => 'post'],
-
 ]);
+
+Route::get('posts/by_category/{category}', [PostController::class, 'by_category'])
+    ->name('posts.by_category');
+Route::get('posts/by_auth', [PostController::class, 'by_author'])->name('posts.by_author');
+Route::post('/posts/search', [PostController::class, 'search'])->name('posts.search');
 
 Route::view('/about', 'about')->name('about')->middleware('auth');
 

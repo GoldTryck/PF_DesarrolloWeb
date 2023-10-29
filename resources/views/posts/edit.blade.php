@@ -3,7 +3,7 @@
     :meta-description="$post->body"
     header="EDITAR POST">
 
-    <form action="{{ route('posts.update', $post) }}" method="POST">
+    <form action="{{ route('posts.update', $post) }}" method="POST" enctype="multipart/form-data">
         @csrf @method('PATCH')
         @include('posts.forms')
         <button type="submit">Send</button>
