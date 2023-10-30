@@ -163,6 +163,8 @@ return [
         /*
          * Application Service Providers...
          */
+        //Registrar el provedor de servicios composer en donde se configuró el permiso para acceder a la tabla categories en la vista nav
+        App\Providers\ComposerServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
