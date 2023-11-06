@@ -18,6 +18,12 @@ class CommentController extends Controller
         $comment->post()->associate($post);
         $comment->save();
 
-        return $request;
+        return redirect()->route('posts.show', $post)->with('status', '¡Comentario publicado!');
     }
-}
+    public function destroy(Comment $comment)
+    {
+        $post = Post::find($comment->post_id);
+        $comment->delete();
+        return to_route('posts.show', $post)->with('status', 'Comentario Eliminado!');
+    }
+} 

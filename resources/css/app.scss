@@ -1,12 +1,82 @@
-$body-bg: #F2E0C9;
-$prymary: #377D8C;
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+
+$prymary: #7f00b2;
+
+$sec1: #07438d;
+$sec2: #1c8897;
+
+$acc3: rgb(255, 255, 255);
+$acc2: rgb(0, 102, 204);
+$acc1: #2a53a1;
+
+$acc4: rgb(152, 255, 152); //rgb(76, 175, 80);
+
+$body-bg: rgb(166, 223, 214);
+$body-color: black;
+
+$dropdown-color: $acc4;
+$dropdown-bg: $sec2;
+$dropdown-border-color: $acc4;
+$dropdown-divider-bg: $acc4;
+$dropdown-link-hover-bg: rgba(255, 255, 255, .1);
+$dropdown-link-hover-color: white;
+
+$input-bg: $sec2; //Color de fondo sin seleccion
+$input-focus-bg: $sec1; //cOLOR DE FONDO SELECCIONADO
+$input-focus-color: white; //Color del texto escrito
+$input-border-color: $acc4; //Color del borde
+$input-focus-border-color: $acc4; //color del borde seleccionado
+$input-placeholder-color: $acc4; //Color de la etiqueta
+
+$table-color: $acc4;
+$table-bg: $sec2;
+$table-accent-bg: $sec2;
+$table-striped-color: $acc4;
+$table-hover-color: white;
+$table-hover-bg: rgba(255, 255, 255, .1);
+$table-border-color: $acc4;
+// Create your own map
+$custom-colors: (
+    "azul": $sec1,
+    "aqua": $sec2,
+    "uva": $prymary,
+
+    "verde": $acc1,
+    "cian": $acc2,
+    "neon": $acc4,
+    "blanco": $acc3,
+);
+// Merge the maps
+$theme-colors: map-merge($theme-colors, $custom-colors);
 
 @import 'bootstrap/scss/bootstrap';
 
-a {
-    color: $prymary;
+.neon-text {
+    color: map-get($custom-colors, "neon");
 }
 
-h1 {
-    color: $prymary;
+.white-text {
+    color: rgb(255, 255, 255);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.nav-link {
+    color: map-get($custom-colors, "neon");
+}
+
+main {
+    flex: 1;
+}
+
+.footer {
+    text-align: center;
+    padding: 15px;
 }

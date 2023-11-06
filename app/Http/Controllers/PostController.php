@@ -97,10 +97,7 @@ class PostController extends Controller
     }
     public function by_author()
     {
-        // Obtén todas las publicaciones del tema especificado
         $posts = Post::where('user_id', Auth::user()->id)->get();
-
-        // Devuelve las publicaciones
         return view('posts.index', compact('posts'));
     }
     public function search(Request $request)
