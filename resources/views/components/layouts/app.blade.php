@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8">
@@ -10,30 +10,24 @@
     <meta name="description" content="{{ $metaDescription ?? 'Default meta description' }}">
 </head>
 
-<body>
+<body class="bg-gray-100">
     <x-layouts.nav />
     @if (session('status'))
-        <div class="alert alert-success d-flex align-items-center" role="alert">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img"
-                aria-label="Warning:">
-                <path
-                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-            </svg>
-            <div>
-                {{ session('status') }}
-            </div>
-        </div>
+        <!-- Este es un mensaje de status que se imprime cada que se realiza una accion, se le puede dar un formato bonito xD-->
+        {{ session('status') }}
     @endif
+    <main class="container mx-auto mt-10">
+        <h2 class="font-black text-center text-3xl mb-10">
+            @yield('titulo')
 
-    {{ $slot }}
+        </h2>
+        {{ $slot }} <!-- Equivalente a @yield('contenido')-->
 
-    <footer class="footer mt-auto py-3 bg-azul">
-        <div class="container d-lg-flex justify-content-between justify-content-lg-end">
-            <span class="text-light">GameTunesTech Hub - All rights reserved 2023</span>
-        </div>
+    </main>
+    <footer class="mt-10 text-center p-5 text-gray-500 font-bold uppercase">
+        Finstagram- Todos los derechos reservados
+        {{ now()->year }}
     </footer>
-
 </body>
 
 </html>
