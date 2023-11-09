@@ -5,6 +5,7 @@
             @if (Auth::user()->role_id == 1)
                 <!-- Prueba de roles si se tiene rol de admin se vera este link:-->
                 <a href="{{ route('users.index') }}">Usuarios</a>
+                <a href="{{ route('categories.index') }}">Categorias</a>
             @endif
         @endauth
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"

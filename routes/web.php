@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\RegisterUserController;
 use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 // localhost => main
@@ -38,3 +39,4 @@ Route::post('/register', [RegisterUserController::class, 'store']);
 
 Route::get('/users', [RegisterUserController::class, 'index'])->name('users.index');
 
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
