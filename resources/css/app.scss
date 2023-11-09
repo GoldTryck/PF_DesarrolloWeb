@@ -80,3 +80,9 @@ main {
     text-align: center;
     padding: 15px;
 }
+
+.carousel-item img {
+    width: 100%;
+    height: fit-content;
+    display: block;
+}

@@ -1,7 +1,7 @@
 <x-layouts.app :title="$post->title" :meta-description="$post->body">
     @if ($post->image)
         <div class="clearfix bg-blanco">
-            <img src="{{ Storage::disk('public')->url($post->image) }}" class=" img-fluid col-md-3 float-md-end md-3"
+            <img src="{{ Storage::disk('public')->url($post->image) }}" class=" img-fluid col-md-4 float-md-end ms-md-3"
                 alt="...">
             <h1 class="text-center">{{ $post->title }}</h1>
             <p class="text-justify">{{ $post->body }}</p>
