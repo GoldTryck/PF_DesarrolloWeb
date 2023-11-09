@@ -18,9 +18,15 @@ class RegisterUserController extends Controller
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password)    
+            'password' => bcrypt($request->password),
+            'role_id' => 2,    
         ]);
 
         return to_route('login')->with('status', '¡Cuenta creada exitosamente!');
+    }
+    public function index()
+    {
+        $users = User::all();
+        return view('users.index', compact('users'));
     }
 }
