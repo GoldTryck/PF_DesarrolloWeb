@@ -4,7 +4,7 @@
             <div class="col-span-1 md:col-span-1">
                 @if ($post->image)
                     <div class="clearfix bg-white">
-                        <img src="{{ Storage::disk('public')->url($post->image) }}" class="img-fluid float-right ms-3" alt="...">
+                        <img src="{{ Storage::disk('public')->url($post->image) }}" class="img-fluid float-right ms-3 rounded-lg" alt="...">
                     </div>
                 @endif
             </div>
