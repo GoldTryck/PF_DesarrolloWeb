@@ -1,36 +1,35 @@
 <x-layouts.app :title="$post->title" :meta-description="$post->body">
     @if ($post->image)
-        <div class="clearfix bg-blanco">
-            <img src="{{ Storage::disk('public')->url($post->image) }}" class=" img-fluid col-md-4 float-md-end ms-md-3"
-                alt="...">
-            <h1 class="text-center">{{ $post->title }}</h1>
-            <p class="text-justify">{{ $post->body }}</p>
+        <div class="clearfix bg-white">
+            <img src="{{ Storage::disk('public')->url($post->image) }}" class="img-fluid col-span-4 float-right ms-3" alt="...">
+            <h1 class="mt-5 mb-5 text-gray-500 font-bold text-center">{{ $post->title }}</h1>
+            <p class="mt-5 mb-5 text-gray-500 font-bold text-center">{{ $post->body }}</p>
         </div>
     @endif
-    <div class="container mb-4 mt-4">
-        <div class="row">
-            <div class="col align-items-center">
-                <p class="text-center"> 👨🏼‍💻🤖 Autor: {{ $post->user->name }}</p>
+    <div class="container mx-auto my-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div class="col-span-1 md:col-span-1 md:col-start-2 flex items-center">
+                <p class="mb-2 text-gray-500 font-bold text-center">👨🏼‍💻🤖 Autor: {{ $post->user->name }}</p>
             </div>
-            <div class="col align-items-center">
-                <p class="text-center">📅 Creado el: {{ $post->created_at->format('d.m.Y') }}</p>
+            <div class="col-span-1 md:col-span-1 md:col-start-2 flex items-center">
+                <p class="mb-2 text-gray-500 font-bold text-center">📅 Creado el: {{ $post->created_at->format('d.m.Y') }}</p>
             </div>
             @if ($post->created_at != $post->updated_at)
-                <div class="col align-items-center">
-                    <p class="text-center">⚙️ Actualizado el: {{ $post->updated_at->format('d.m.Y') }}</p>
+                <div class="col-span-1 md:col-span-1 md:col-start-2 flex items-center">
+                    <p class="mb-2 text-gray-500 font-bold text-center">⚙️ Actualizado el: {{ $post->updated_at->format('d.m.Y') }}</p>
                 </div>
             @endif
-            <div class="col align-items-center">
-                <p class="text-center"> 📚 Categoría: {{ $post->category->category }}</p>
+            <div class="col-span-1 md:col-span-1 md:col-start-2 flex items-center">
+                <p class="mb-2 text-gray-500 font-bold text-center">📚 Categoría: {{ $post->category->category }}</p>
             </div>
         </div>
     </div>
     @if ($post->comments->count() > 0)
-        <div class="container-fluid mb-4 bg-azul py-3">
-            <h3 class="text-center neon-text">-- Comentarios --</h3>
+        <div class="container-fluid my-4 bg-blue-200 py-3">
+            <h3 class="mb-2 text-gray-500 font-bold text-center">-- Comentarios --</h3>
         </div>
-        <div class="table-responsive-sm">
-            <table class="table table-hover table-bordered align-middle">
+        <div class="table-responsive">
+            <table class="table-auto w-full table-bordered align-middle">
                 <colgroup>
                     <col style="width: 5%">
                     <col style="width: 20%">
@@ -42,16 +41,16 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">
-                            <p class="text-center">Usuario</p>
+                            <p class="text-center text-gray-500 font-mono">Usuario</p>
                         </th>
                         <th scope="col">
-                            <p class="text-center">Fecha</p>
+                            <p class="text-center text-gray-500 font-mono">Fecha</p>
                         </th>
                         <th scope="col">
-                            <p class="text-center">Comentario</p>
+                            <p class="text-center text-gray-500 font-mono">Comentario</p>
                         </th>
                         <th scope="col">
-                            <p class="text-center">Acción</p>
+                            <p class="text-center text-gray-500 font-mono">Acción</p>
                         </th>
                     </tr>
                 </thead>
@@ -59,13 +58,13 @@
                     <tbody>
                         <th scope="row">{{ $loop->iteration }}</th>
                         <td>
-                            <p class="text-center">{{ $comment->user->name }}</p>
+                            <p class="mb-2 text-gray-500 font-bold text-center">{{ $comment->user->name }}</p>
                         </td>
                         <td>
-                            <p class="text-center">{{ $comment->created_at->format('d.m.Y') }}</p>
+                            <p class="mb-2 text-gray-500 font-bold text-center">{{ $comment->created_at->format('d.m.Y') }}</p>
                         </td>
                         <td>
-                            <p class="text-justify">{{ $comment->body }}</p>
+                            <p class="mb-2 text-gray-500 font-bold text-center">{{ $comment->body }}</p>
                         </td>
                         <td class="align-middle">
                             @if (auth()->check() && auth()->user()->name == $comment->user->name)
@@ -73,7 +72,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-dark btn-sm text">Eliminar</button>
+                                        <button class="mt-5 bg-red-400 hover:bg-red-600 transition-colors cursor-pointer uppercase font-bold w-full p-3 text-white rounded-lg" type="button">Eliminar</button>
                                     </div>
                                 </form>
                             @else
@@ -84,7 +83,6 @@
                 @endforeach
             </table>
         </div>
-
     @endif
     @auth
         <form action="{{ route('comments.store', $post) }}" method="POST">
@@ -92,10 +90,9 @@
             @include('comments.comment_form')
         </form>
     @endauth
-    <div class="container-fluid">
-        <div class="row">
-            <a href="{{ route('posts.index') }}" class="col btn btn-uva cian-text btn-lg">Regresar</a>
+    <div class="container mx-auto">
+        <div class="grid grid-cols-1">
+            <a href="{{ route('posts.index') }}" class="mt-5 bg-indigo-400 hover:bg-indigo-600 transition-colors cursor-pointer uppercase font-bold w-auto p-3 text-white rounded-lg text-center" type="button">Regresar</a>
         </div>
     </div>
-
 </x-layouts.app>
