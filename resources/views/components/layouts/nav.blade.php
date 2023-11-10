@@ -36,8 +36,20 @@ endguest
     <div class="container mx-auto flex justify-between items-center">
         <h1 class="text-3xl font-black">Finstagram</h1>
         <nav class="flex gap-3 items-center">
-            <a class="font-bold uppercase text-emerald-400 text-sm" href=" {{ route('login') }} ">Log in</a>
-            <a class="font-bold uppercase text-emerald-400 text-sm" href=" {{ route('register') }} ">Sing up</a>
+
+            @auth
+                <label class="font-bold uppercase text-emerald-400 text-sm" href=" {{ route('login') }} ">
+                    {{ Auth::user()->name }}</label> <!--Este deberia ser un dropdown-->
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button class="font-bold uppercase text-emerald-400 text-sm" type="submit">Logout</button>
+                </form>
+            @endauth
+            @guest
+                <a class="font-bold uppercase text-emerald-400 text-sm" href=" {{ route('login') }} ">Log in</a>
+                <a class="font-bold uppercase text-emerald-400 text-sm" href=" {{ route('register') }} ">Sing up</a>
+            @endguest
+
         </nav>
     </div>
 </header>
