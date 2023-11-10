@@ -18,4 +18,5 @@
             </form>
             <a href="{{ route('home') }}">Regresar</a>
         </div>
+    </div>
 </x-layouts.app>
