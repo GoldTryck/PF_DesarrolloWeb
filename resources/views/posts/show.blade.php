@@ -108,7 +108,7 @@
     <div class="container mx-auto">
         <div class="grid grid-cols-1">
             <a href="{{ route('posts.index') }}" class="bg-indigo-400 hover:bg-indigo-600 transition-colors cursor-pointer uppercase font-bold w-auto p-3 text-white rounded-lg text-center" type="button">
-                <i class="fas fa-arrow-left"></i> Regresar</a>
+                <i class="icon-home fas fa-home"></i> Feed</a>
         </div>
     </div>
 </x-layouts.app>
