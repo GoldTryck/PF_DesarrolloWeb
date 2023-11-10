@@ -13,8 +13,10 @@
 <body class="bg-gray-100">
     <x-layouts.nav />
     @if (session('status'))
-        <!-- Este es un mensaje de status que se imprime cada que se realiza una accion, se le puede dar un formato bonito xD-->
-        {{ session('status') }}
+        <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 white:bg-gray-800 dark:text-green-400"
+            role="alert">
+            <span class="mt-10 p-5 font-bold uppercase">{{ session('status') }}</span>
+        </div>
     @endif
     <main class="container mx-auto mt-10">
         <h2 class="font-black text-center text-3xl mb-10">

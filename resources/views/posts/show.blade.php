@@ -4,7 +4,8 @@
             <div class="col-span-1 md:col-span-1">
                 @if ($post->image)
                     <div class="clearfix bg-white">
-                        <img src="{{ Storage::disk('public')->url($post->image) }}" class="img-fluid float-right ms-3 rounded-lg" alt="...">
+                        <img src="{{ Storage::disk('public')->url($post->image) }}"
+                            class="img-fluid float-right ms-3 rounded-lg" alt="...">
                     </div>
                 @endif
             </div>
@@ -20,7 +21,8 @@
                     </div>
                     @if ($post->created_at != $post->updated_at)
                         <div class="col-span-1 md:col-span-1 md:col-start-2 flex items-center">
-                            <p class="text-gray-500 font-bold">⚙️ Actualizado el: {{ $post->updated_at->format('d.m.Y') }}</p>
+                            <p class="text-gray-500 font-bold">⚙️ Actualizado el:
+                                {{ $post->updated_at->format('d.m.Y') }}</p>
                         </div>
                     @endif
                     <div class="col-span-1 md:col-span-1 md:col-start-2 flex items-center">
@@ -30,9 +32,9 @@
             </div>
         </div>
     </div>
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    
+
     <div class="container mx-auto my-4">
         @if ($post->comments->count() > 0)
             <div class="container-fluid my-4 bg-blue-200 py-3">
@@ -71,7 +73,8 @@
                                 <p class="text-gray-500 font-bold text-center">{{ $comment->user->name }}</p>
                             </td>
                             <td>
-                                <p class="text-gray-500 font-bold text-center">{{ $comment->created_at->format('d.m.Y') }}</p>
+                                <p class="text-gray-500 font-bold text-center">
+                                    {{ $comment->created_at->format('d.m.Y') }}</p>
                             </td>
                             <td>
                                 <p class="text-gray-500 font-bold text-center">{{ $comment->body }}</p>
@@ -82,7 +85,9 @@
                                         @csrf
                                         @method('DELETE')
                                         <div class="text-center">
-                                            <button class="bg-red-400 hover:bg-red-600 transition-colors cursor-pointer uppercase font-bold w-full p-3 text-white rounded-lg" type="button">
+                                            <button
+                                                class="bg-red-400 hover:bg-red-600 transition-colors cursor-pointer uppercase font-bold w-full p-3 text-white rounded-lg"
+                                                type="submit">
                                                 <i class="fas fa-trash"></i> Eliminar
                                             </button>
                                         </div>
@@ -97,17 +102,17 @@
             </div>
         @endif
     </div>
-    
     @auth
         <form action="{{ route('comments.store', $post) }}" method="POST">
             @csrf
             @include('comments.comment_form')
         </form>
     @endauth
-    
     <div class="container mx-auto">
         <div class="grid grid-cols-1">
-            <a href="{{ route('posts.index') }}" class="bg-indigo-400 hover:bg-indigo-600 transition-colors cursor-pointer uppercase font-bold w-auto p-3 text-white rounded-lg text-center" type="button">
+            <a href="{{ route('posts.index') }}"
+                class="bg-indigo-400 hover:bg-indigo-600 transition-colors cursor-pointer uppercase font-bold w-auto p-3 text-white rounded-lg text-center"
+                type="button">
                 <i class="icon-home fas fa-home"></i> Feed</a>
         </div>
     </div>

@@ -36,14 +36,36 @@ endguest
     <div class="container mx-auto flex justify-between items-center">
         <h1 class="text-3xl font-black">Finstagram</h1>
         <nav class="flex gap-3 items-center">
-
+            <a class="font-bold uppercase text-emerald-400 text-sm" href=" {{ route('home') }} ">Home</a>
+            <a class="font-bold uppercase text-emerald-400 text-sm" href=" {{ route('about') }} ">About Us</a>
+            <a class="font-bold uppercase text-emerald-400 text-sm" href=" {{ route('posts.index') }} ">Posts</a>
             @auth
-                <label class="font-bold uppercase text-emerald-400 text-sm" href=" {{ route('login') }} ">
-                    {{ Auth::user()->name }}</label> <!--Este deberia ser un dropdown-->
-                <form action="{{ route('logout') }}" method="POST">
-                    @csrf
-                    <button class="font-bold uppercase text-emerald-400 text-sm" type="submit">Logout</button>
-                </form>
+                <div class="relative inline-block text-left">
+                    <button
+                        class="text-white bg-emerald-400 hover:bg-emerald-600 focus:ring-3 focus:outline-none focus:ring-emerald-800 font-bold uppercase rounded-md text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        id="dropdown-button">
+                        {{ Auth::user()->name }}
+                    </button>
+                    <div class="origin-top-right absolute right-0 mt-2 w-32 rounded-md shadow-lg hidden"
+                        id="dropdown-content">
+                        <div class="bg-white rounded-md py-1">
+                            <a href="{{ route('dashboard') }}"
+                                class="block px-4 py-2 text-gray-800 hover:bg-blue-100">Dashboard</a>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button class="block px-4 py-2 text-gray-800 hover:bg-blue-100"
+                                    type="submit">Logout</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    document.getElementById('dropdown-button').addEventListener('click', function() {
+                        document.getElementById('dropdown-content').classList.toggle('hidden');
+                    });
+                </script>
+
             @endauth
             @guest
                 <a class="font-bold uppercase text-emerald-400 text-sm" href=" {{ route('login') }} ">Log in</a>
