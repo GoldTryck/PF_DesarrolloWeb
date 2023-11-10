@@ -14,6 +14,18 @@ use PharIo\Manifest\Author;
 
 class PostController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
+    public function index2()
+    {
+        return view('dashboard');
+    }
+    
+
     public function index()
     {
         $posts = Post::get();
