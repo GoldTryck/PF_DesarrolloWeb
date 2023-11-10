@@ -23,7 +23,7 @@ class AuthenticatedSessionController extends Controller
         
 
         $request->session()->regenerate();
-        return redirect()->intended()->with('status','Inicio de sesión extioso!');
+        return to_route('dashboard')->with('status','Inicio de sesión extioso!');
     }
     public function destroy(Request $request)
     {

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 // localhost => main
 Route::view('/', 'main')->name('home');
 
-Route::get('/muro',[PostController::class,'index2'])->name('post.index');
+Route::view('/muro', 'dashboard')->name('dashboard');
 
 Route::resource('blog', PostController::class, [
     'names' => 'posts',
