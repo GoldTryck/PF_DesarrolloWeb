@@ -39,5 +39,9 @@ Route::view('/register', 'auth.register')->name('register');
 Route::post('/register', [RegisterUserController::class, 'store']);
 
 Route::get('/users', [RegisterUserController::class, 'index'])->name('users.index');
+Route::delete('users/{user}/destroy', [RegisterUserController::class, 'destroy'])->name('users.destroy');
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+Route::view('categories/create', 'categories/create')->name('categories.create');
+Route::post('categories/store', [CategoryController::class, 'store'])->name('categories.store');
+Route::delete('categories/{category}/destroy', [CategoryController::class, 'destroy'])->name('categories.destroy');

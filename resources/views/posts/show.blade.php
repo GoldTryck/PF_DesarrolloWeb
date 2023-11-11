@@ -37,68 +37,70 @@
 
     <div class="container mx-auto my-4">
         @if ($post->comments->count() > 0)
-            <div class="container-fluid my-4 bg-blue-200 py-3">
-                <h3 class="text-gray-500 font-bold text-center">-- Comentarios --</h3>
+            <div class="container-fluid my-4 bg-emerald-200 py-3">
+                <p class="font-bold text-center">COMENTARIOS</p>
             </div>
-            <div class="table-responsive">
-                <table class="table-auto w-full table-bordered align-middle">
-                    <colgroup>
-                        <col style="width: 5%">
-                        <col style="width: 20%">
-                        <col style="width: 10%">
-                        <col style="width: 50%">
-                        <col style="width: 15%">
-                    </colgroup>
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">
-                                <p class="text-center text-gray-500 font-mono">Usuario</p>
-                            </th>
-                            <th scope="col">
-                                <p class="text-center text-gray-500 font-mono">Fecha</p>
-                            </th>
-                            <th scope="col">
-                                <p class="text-center text-gray-500 font-mono">Comentario</p>
-                            </th>
-                            <th scope="col">
-                                <p class="text-center text-gray-500 font-mono">Acción</p>
-                            </th>
-                        </tr>
-                    </thead>
-                    @foreach ($post->comments as $comment)
+            <div class="max-w-screen-xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4">
+                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="text-center px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                                    #
+                                </th>
+                                <th scope="col" class="text-center px-6 py-3">
+                                    USUARIO
+                                </th>
+                                <th scope="col" class="text-center px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                                    FECHA
+                                </th>
+                                <th scope="col" class="text-center px-6 py-3">
+                                    COMENTARIO
+                                </th>
+                                <th scope="col" class="text-center px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                                    ACCION
+                                </th>
+
+                            </tr>
+                        </thead>
                         <tbody>
-                            <th scope="row">{{ $loop->iteration }}</th>
-                            <td>
-                                <p class="text-gray-500 font-bold text-center">{{ $comment->user->name }}</p>
-                            </td>
-                            <td>
-                                <p class="text-gray-500 font-bold text-center">
-                                    {{ $comment->created_at->format('d.m.Y') }}</p>
-                            </td>
-                            <td>
-                                <p class="text-gray-500 font-bold text-center">{{ $comment->body }}</p>
-                            </td>
-                            <td class="align-middle">
-                                @if (auth()->check() && auth()->user()->name == $comment->user->name)
-                                    <form action="{{ route('comments.destroy', $comment) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <div class="text-center">
-                                            <button
-                                                class="bg-red-400 hover:bg-red-600 transition-colors cursor-pointer uppercase font-bold w-full p-3 text-white rounded-lg"
-                                                type="submit">
-                                                <i class="fas fa-trash"></i> Eliminar
-                                            </button>
-                                        </div>
-                                    </form>
-                                @else
-                                    <p class="text-center">--</p>
-                                @endif
-                            </td>
+                            @foreach ($post->comments as $comment)
+                                <tr class="border-b border-gray-200 dark:border-gray-700">
+                                    <th scope="row"
+                                        class="text-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                        {{ $loop->iteration }}
+                                    </th>
+                                    <td class="px-6 py-4">
+                                        {{ $comment->user->name }}
+                                    </td>
+                                    <td
+                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                        {{ $comment->created_at }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $comment->body }}
+                                    </td>
+                                    @if (auth()->check() && auth()->user()->name == $comment->user->name)
+                                        <td
+                                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                            <form action="{{ route('comments.destroy', $comment) }}" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button
+                                                    class="bg-red-400 hover:bg-red-600 transition-colors cursor-pointer uppercase font-bold w-full p-3 text-white rounded-lg"
+                                                    type="submit">
+                                                    <i class="fas fa-trash"></i> Eliminar
+                                                </button>
+                                            </form>
+                                        </td>
+                                    @else
+                                        <td class="px-6 py-4 text-center">--</td>
+                                    @endif
+                                </tr>
+                            @endforeach
                         </tbody>
-                    @endforeach
-                </table>
+                    </table>
+                </div>
             </div>
         @endif
     </div>

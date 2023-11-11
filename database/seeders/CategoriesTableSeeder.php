@@ -16,7 +16,7 @@ class CategoriesTableSeeder extends Seeder
         DB::table('categories')->insert([
             ['id' => 1, 'category'=> 'Música'],
             ['id' => 2, 'category' => 'Tecnología' ],
-            ['id' => 3, 'category' => 'Videojueegos' ],
+            ['id' => 3, 'category' => 'Videojuegos' ],
         ]);
     }
 }

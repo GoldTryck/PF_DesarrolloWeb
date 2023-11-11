@@ -29,4 +29,10 @@ class RegisterUserController extends Controller
         $users = User::all();
         return view('users.index', compact('users'));
     }
+
+    public function destroy(User $user)
+        {
+        $user->delete();
+        return to_route('users.index')->with('status', 'Usuario Eliminado!');
+    }
 }
